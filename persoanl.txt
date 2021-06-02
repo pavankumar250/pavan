@@ -1,1 +1,2 @@
 personal first quote
+second quote for merge
