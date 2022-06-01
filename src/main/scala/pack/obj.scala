@@ -19,7 +19,7 @@ object obj {
     println("Started")
     val a=2
     println(a)
-    val list=List(1,2,3,4,5,6)
+    val list=List(1,2,3,4,5,6,7)
     val newlis=list.filter(x=>x>3)
     newlis.foreach(println)
 
