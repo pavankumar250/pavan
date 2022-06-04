@@ -32,6 +32,32 @@ object parquetage_lessthan_30 {
     val parqdf=spark.read.format("parquet").load("C:\\Users\\ppasula1\\Desktop\\Spring boot\\data.parquet")
     parqdf.show()
 
+    println("This is Raw CSV data")
+    val csvdf=spark.read.format("csv").option("header","true").load("C:\\Users\\ppasula1\\Desktop\\Spring boot\\usdata.csv")
+csvdf.show()
+    println("This is Age less than 30")
+    csvdf.createOrReplaceTempView("usdata")
+    val lessthan30=spark.sql("select * from usdata where age<30")
+    lessthan30.show()
+
+    lessthan30.write.mode("append").parquet("C:\\Users\\ppasula1\\Desktop\\Spring boot\\parqdata")
+
+    println("This is ignore mode greaterthan50 ")
+
+    val greaterthan50=spark.sql("select * from usdata where age>30")
+    greaterthan50.show()
+
+    greaterthan50.write.mode("ignore").parquet("C:\\Users\\ppasula1\\Desktop\\Spring boot\\parqdata")
+
+    println("This is overwrite mode greaterthan15 ")
+
+    val greaterthan15=spark.sql("select * from usdata where age>15")
+    greaterthan15.show()
+
+    greaterthan15.write.mode("overwrite").parquet("C:\\Users\\ppasula1\\Desktop\\Spring boot\\parqdata")
+
+
+
   }
 
   }
